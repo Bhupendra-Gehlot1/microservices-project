@@ -25,7 +25,8 @@ The Order Service manages order processing and tracking within the microservices
 
 1. Clone the repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/Bhupendra-Gehlot1/microservices-project
+cd microservices-project
 cd order-service
 ```
 
