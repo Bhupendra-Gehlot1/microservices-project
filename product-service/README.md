@@ -24,7 +24,8 @@ The Product Service handles product management and inventory tracking within the
 
 1. Clone the repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/Bhupendra-Gehlot1/microservices-project
+cd microservices-project
 cd product-service
 ```
 
