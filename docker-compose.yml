@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  user-service:
+    build: ./user-service
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - MONGODB_URI=mongodb+srv://bhupendragehlt06:gehlot123@cluster0.setri.mongodb.net/user-service?retryWrites=true&w=majority&appName=Cluster0
+      - JWT_SECRET=eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTcyNzc2NDIxOSwiaWF0IjoxNzI3NzY0MjE5fQ.QIh1NV-GsZgsk0AsnaMqg3fn-BgiqbRRf8GSQvKl3uc
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+
+  product-service:
+    build: ./product-service
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - MONGODB_URI=mongodb+srv://bhupendragehlt06:gehlot123@cluster0.setri.mongodb.net/product-service?retryWrites=true&w=majority&appName=Cluster0
+      - JWT_SECRET=eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTcyNzc2NDIxOSwiaWF0IjoxNzI3NzY0MjE5fQ.QIh1NV-GsZgsk0AsnaMqg3fn-BgiqbRRf8GSQvKl3uc
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+
+  order-service:
+    build: ./order-service
+    ports:
+      - "3003:3003"
+    environment:
+      - PORT=3003
+      - MONGODB_URI=mongodb+srv://bhupendragehlt06:gehlot123@cluster0.setri.mongodb.net/order-service?retryWrites=true&w=majority&appName=Cluster0
+      - JWT_SECRET=eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTcyNzc2NDIxOSwiaWF0IjoxNzI3NzY0MjE5fQ.QIh1NV-GsZgsk0AsnaMqg3fn-BgiqbRRf8GSQvKl3uc
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+
+  graphql-gateway:
+    build: ./graphql-gateway
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - JWT_SECRET=eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTcyNzc2NDIxOSwiaWF0IjoxNzI3NzY0MjE5fQ.QIh1NV-GsZgsk0AsnaMqg3fn-BgiqbRRf8GSQvKl3uc
+      - USER_SERVICE_URL=http://user-service:3001
+      - PRODUCT_SERVICE_URL=http://product-service:3002
+      - ORDER_SERVICE_URL=http://order-service:3003
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - user-service
+      - product-service
+      - order-service
+      - redis
+
+  redis:
+    image: redis:7.2-alpine
+    ports:
+      - "6379:6379"
