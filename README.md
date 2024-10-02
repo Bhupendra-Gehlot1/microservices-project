@@ -35,7 +35,7 @@ This project implements a microservices-based backend system with user managemen
 
 1. Clone the repository:
    ```bash
-   git clone [repository-url](https://github.com/Bhupendra-Gehlot1/microservices-project)
+   git clone https://github.com/Bhupendra-Gehlot1/microservices-project
    cd microservices-project
    ```
 
