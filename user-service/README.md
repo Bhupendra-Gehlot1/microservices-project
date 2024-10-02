@@ -25,7 +25,8 @@ The User Service is responsible for user authentication, registration, and profi
 
 1. Clone the repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/Bhupendra-Gehlot1/microservices-project
+cd microservices-project
 cd user-service
 ```
 
