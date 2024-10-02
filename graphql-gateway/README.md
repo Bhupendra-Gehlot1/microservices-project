@@ -25,7 +25,8 @@ The GraphQL Gateway provides a unified API interface for the microservices archi
 
 1. Clone the repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/Bhupendra-Gehlot1/microservices-project
+cd microservices-project
 cd graphql-gateway
 ```
 
